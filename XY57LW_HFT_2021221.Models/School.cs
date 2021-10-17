@@ -10,7 +10,7 @@ namespace XY57LW_HFT_2021221.Models
 {
     [Table("schools")]
 
-    class School
+    public class School
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

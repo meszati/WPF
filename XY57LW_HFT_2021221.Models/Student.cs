@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace XY57LW_HFT_2021221.Models
 {
     [Table("students")]
-    class Student
+    public class Student
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
