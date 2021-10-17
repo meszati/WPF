@@ -30,6 +30,9 @@ namespace XY57LW_HFT_2021221.Models
         [Required]
         public double Bodyfat { get; set; }
 
+        [NotMapped]
+        public virtual Student Student { get; set; }
+
 
     }
 }

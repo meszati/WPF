@@ -32,6 +32,12 @@ namespace XY57LW_HFT_2021221.Models
         [ForeignKey(nameof(School))]
         public int SchoolOM { get; set; }
 
+        [NotMapped]
+        public virtual School School { get; set; }
+
+        [NotMapped]
+        public virtual Measurement Netfit { get; set; }
+
         [ForeignKey(nameof(Measurement))]
         public int NetfitID { get; set; }
     }
