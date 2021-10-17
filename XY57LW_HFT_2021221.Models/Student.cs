@@ -30,7 +30,7 @@ namespace XY57LW_HFT_2021221.Models
         public string City { get; set; }
 
         [ForeignKey(nameof(School))]
-        public int SchoolOM { get; set; }
+        public int SchoolID { get; set; }
 
         [NotMapped]
         public virtual School School { get; set; }

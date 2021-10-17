@@ -15,7 +15,7 @@ namespace XY57LW_HFT_2021221.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int SchoolID { get; set; }
+        public int SchID { get; set; }
 
         [MaxLength(40)]
         [Required]
