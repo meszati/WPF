@@ -47,7 +47,6 @@ namespace XY57LW_HFT_2021221.Repository
             oldschool.Location = school.Location;
             oldschool.Name = school.Name;
             oldschool.Phone = school.Phone;
-            oldschool.Students = school.Students;
             ctx.SaveChanges();
         }
     }
