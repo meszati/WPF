@@ -66,5 +66,28 @@ namespace XY57LW_HFT_2021221.Test
                 Is.EqualTo(new KeyValuePair<string, IEnumerable<string>>
                 ("Terézvárosi", new string[] { "Ádám Ádám", "Álmos Ádám"})));
         }
+
+        [TestCase("Gyéresi Norbert", true)]
+        [TestCase("Ádám", false)]
+        public void CreateStudentTest(string name, bool result)
+        {
+            if (result)
+            {
+                Assert.That(() => studentLogic.Create(new Student()
+                {
+                    Name = name,
+                    City = "Budapest"
+                }), Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => studentLogic.Create(new Student()
+                {
+                    Name = name,
+                    City = "Halásztelek"
+
+                }), Throws.Exception);
+            }
+        }
     }
 }

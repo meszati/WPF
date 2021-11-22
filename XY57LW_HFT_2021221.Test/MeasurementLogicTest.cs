@@ -84,5 +84,27 @@ namespace XY57LW_HFT_2021221.Test
                 Is.EqualTo(new KeyValuePair<string, int>
                 ("Ádám Ádám", 20)));
         }
+
+        [TestCase(10, true)]
+        [TestCase(-5, false)]
+        public void CreateMeasurementTest(int pushup, bool result)
+        {
+            if (result)
+            {
+                Assert.That(() => measurementLogic.Create(new Measurement()
+                {
+                    Pushup = pushup,
+                    Situp = 10
+                }), Throws.Nothing);
+            }
+            else
+            {
+                Assert.That(() => measurementLogic.Create(new Measurement()
+                {
+                    Pushup = pushup,
+                    Situp = 30
+                }), Throws.Exception);
+            }
+        }
     }
 }
