@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using XY57LW_HFT_2021221.Models;
 
-namespace XY57LW_HFT_2021221.Repository
+namespace XY57LW_HFT_2021221.Logic
 {
-    public interface IStudentRepository
+    public interface IStudentLogic
     {
         void Create(Student student);
 
@@ -15,7 +15,7 @@ namespace XY57LW_HFT_2021221.Repository
 
         Student Read(int id);
 
-        IQueryable<Student> ReadAll();
+        IEnumerable<Student> ReadAll();
 
         void Update(Student student);
     }
