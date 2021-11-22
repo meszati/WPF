@@ -15,7 +15,6 @@ namespace XY57LW_HFT_2021221.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Required]
         public double BMI { get; set; }
 
         [Required]
@@ -24,10 +23,8 @@ namespace XY57LW_HFT_2021221.Models
         [Required]
         public int Situp { get; set; }
 
-        [Required]
         public int Jump { get; set; }
 
-        [Required]
         public double Bodyfat { get; set; }
 
         [NotMapped]

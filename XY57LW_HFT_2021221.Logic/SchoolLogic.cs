@@ -23,10 +23,8 @@ namespace XY57LW_HFT_2021221.Logic
             {
                 throw new ArgumentException("This field cannot be empty!");
             }
-            else
-            {
-                schoolRepo.Create(school);
-            }
+
+            schoolRepo.Create(school);
         }
 
         public void Delete(int id)

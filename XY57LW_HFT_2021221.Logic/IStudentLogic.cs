@@ -18,5 +18,9 @@ namespace XY57LW_HFT_2021221.Logic
         IEnumerable<Student> ReadAll();
 
         void Update(Student student);
+
+        IEnumerable<KeyValuePair<string, int>> StudentsCountBySchool();
+
+        IEnumerable<KeyValuePair<string, IEnumerable<string>>> StudentsBySchool();
     }
 }

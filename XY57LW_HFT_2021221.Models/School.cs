@@ -24,10 +24,8 @@ namespace XY57LW_HFT_2021221.Models
         [Required]
         public string Headmaster { get; set; }
 
-        [Required]
         public string Phone { get; set; }
 
-        [Required]
         public string Location { get; set; }
 
         [NotMapped]
