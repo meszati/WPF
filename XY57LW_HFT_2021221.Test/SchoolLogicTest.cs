@@ -41,7 +41,6 @@ namespace XY57LW_HFT_2021221.Test
 
         [TestCase("Terézvárosi", true)]
         [TestCase(null, false)]
-
         public void CreateSchoolTest(string schoolName, bool result)
         {
             if (result)
