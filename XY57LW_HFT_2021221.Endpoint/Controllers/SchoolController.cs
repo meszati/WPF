@@ -53,6 +53,7 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            sl.Delete(id);
         }
     }
 }
