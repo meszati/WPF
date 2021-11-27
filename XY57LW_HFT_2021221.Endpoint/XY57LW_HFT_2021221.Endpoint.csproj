@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\XY57LW_HFT_2021221.Data\XY57LW_HFT_2021221.Data.csproj" />
     <ProjectReference Include="..\XY57LW_HFT_2021221.Logic\XY57LW_HFT_2021221.Logic.csproj" />
     <ProjectReference Include="..\XY57LW_HFT_2021221.Models\XY57LW_HFT_2021221.Models.csproj" />

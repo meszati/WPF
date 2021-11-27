@@ -29,7 +29,5 @@ namespace XY57LW_HFT_2021221.Models
 
         [NotMapped]
         public virtual Student Student { get; set; }
-
-
     }
 }
