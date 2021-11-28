@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XY57LW_HFT_2021221.Logic;
+using XY57LW_HFT_2021221.Repository;
+using XY57LW_HFT_2021221.Data;
 
 namespace XY57LW_HFT_2021221.Endpoint
 {
@@ -17,6 +20,13 @@ namespace XY57LW_HFT_2021221.Endpoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<ISchoolLogic, SchoolLogic>();
+            services.AddTransient<IStudentLogic, StudentLogic>();
+            services.AddTransient<IMeasurementLogic, MeasurementLogic>();
+            services.AddTransient<ISchoolRepository, SchoolRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<IMeasurementRepository, MeasurementRepository>();
+            services.AddTransient<StudentNetfitDbContext, StudentNetfitDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

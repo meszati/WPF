@@ -8,7 +8,7 @@ using XY57LW_HFT_2021221.Models;
 
 namespace XY57LW_HFT_2021221.Repository
 {
-    public class MeasurementRepository
+    public class MeasurementRepository : IMeasurementRepository
     {
         StudentNetfitDbContext ctx;
 

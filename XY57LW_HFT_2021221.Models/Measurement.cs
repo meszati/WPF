@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace XY57LW_HFT_2021221.Models
@@ -28,6 +29,7 @@ namespace XY57LW_HFT_2021221.Models
         public double Bodyfat { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Student Student { get; set; }
     }
 }
