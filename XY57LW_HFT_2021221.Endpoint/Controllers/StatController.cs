@@ -21,37 +21,30 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
             this.sl = sl;
             this.ml = ml;
         }
-
-        // GET: api/<StatController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        
+        public IEnumerable<KeyValuePair<string, int>> GetStudentsCountBySchoo()
         {
-            return new string[] { "value1", "value2" };
+            return sl.StudentsCountBySchool();
         }
 
-        // GET api/<StatController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        public IEnumerable<KeyValuePair<string, IEnumerable<string>>> StudentsBySchool()
         {
-            return "value";
+            return sl.StudentsBySchool();
         }
 
-        // POST api/<StatController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        public IEnumerable<KeyValuePair<string, int>> StudentsOver10PushUps()
         {
+            return ml.StudentsOver10PushUps();
         }
 
-        // PUT api/<StatController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IEnumerable<KeyValuePair<string, double>> AVGPushUpBySchools()
         {
+            return ml.AVGPushUpBySchools();
         }
 
-        // DELETE api/<StatController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IEnumerable<KeyValuePair<string, int>> MostSitUps()
         {
+            return ml.MostSitUps();
         }
     }
 }
