@@ -33,6 +33,7 @@ namespace XY57LW_HFT_2021221.Models
         public int SchoolID { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual School School { get; set; }
 
         [NotMapped]

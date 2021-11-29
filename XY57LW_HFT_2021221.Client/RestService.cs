@@ -10,8 +10,13 @@ namespace XY57LW_HFT_2021221.Client
     class RestService
     {
         HttpClient client;
-        string endpoint;
-        public RestService(string baseurl, string endpoint, string token = "")
+
+        public RestService(string baseurl)
+        {
+            Init(baseurl);
+        }
+
+        private void Init(string baseurl)
         {
             client = new HttpClient();
             client.BaseAddress = new Uri(baseurl);
@@ -19,91 +24,74 @@ namespace XY57LW_HFT_2021221.Client
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue
                 ("application/json"));
-
-            if (token != "")
+            try
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                client.GetAsync("").GetAwaiter().GetResult();
             }
-
-            this.endpoint = endpoint;
+            catch (HttpRequestException)
+            {
+                throw new ArgumentException("Endpoint is not available!");
+            }
         }
 
-        public async Task<List<T>> Get<T>()
+        public List<T> Get<T>(string endpoint)
         {
             List<T> items = new List<T>();
-            HttpResponseMessage response = await
-                client.GetAsync(endpoint);
+            HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                items = await response.Content.ReadAsAsync<List<T>>();
+                items = response.Content.ReadAsAsync<List<T>>().GetAwaiter().GetResult();
             }
+
             return items;
         }
 
-        public async Task<T> Get<T, K>(K id)
+        public T GetSingle<T>(string endpoint)
         {
             T item = default(T);
-            HttpResponseMessage response = await
-                client.GetAsync(endpoint + "/" + id.ToString());
+            HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                item = await response.Content.ReadAsAsync<T>();
+                item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
             }
+
             return item;
         }
 
-        public async Task<R> Post<R, T>(T item)
+        public T Get<T>(int id, string endpoint)
         {
-            HttpResponseMessage response =
-                await client.PostAsJsonAsync(endpoint, item);
+            T item = default(T);
+            HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
+            }
 
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsAsync<R>();
+            return item;
         }
 
-        public async void Post<T>(T item)
+        public void Post<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
-                await client.PostAsJsonAsync(endpoint, item);
-
-            response.EnsureSuccessStatusCode();
-        }
-
-        public async Task<R> Delete<R, K>(K id)
-        {
-            HttpResponseMessage response =
-                await client.DeleteAsync(endpoint + "/" + id.ToString());
-
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsAsync<R>();
-        }
-
-        public async void Delete<K>(K id)
-        {
-            HttpResponseMessage response =
-                await client.DeleteAsync(endpoint + "/" + id.ToString());
+                client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
 
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task<R> Put<R, T, K>(K id, T item)
+        public void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
-                await client.PutAsJsonAsync(endpoint + "/" + id.ToString(), item);
-
-
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsAsync<R>();
-        }
-
-        public async void Put<K, T>(K id, T item)
-        {
-            HttpResponseMessage response =
-                await client.PutAsJsonAsync(endpoint + "/" + id.ToString(), item);
-
+                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
 
             response.EnsureSuccessStatusCode();
         }
 
+        public void Put<T>(T item, string endpoint)
+        {
+            HttpResponseMessage response =
+                client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
+
+            response.EnsureSuccessStatusCode();
+        }
     }
 }
