@@ -41,6 +41,8 @@ namespace XY57LW_HFT_2021221.Test
                     {
                         Pushup = 30,
                         Situp = 20,
+                        BMI = 21.1,
+                        Bodyfat = 10.2,
                         Student = fakeStudent
 
                     },
@@ -83,6 +85,26 @@ namespace XY57LW_HFT_2021221.Test
             Assert.That(result[0],
                 Is.EqualTo(new KeyValuePair<string, int>
                 ("Ádám Ádám", 20)));
+        }
+
+        [Test]
+        public void BiggestBMITest()
+        {
+            var result = measurementLogic.BiggestBMI().ToArray();
+
+            Assert.That(result[0],
+                Is.EqualTo(new KeyValuePair<string, double>
+                ("Ádám Ádám", 21.1)));
+        }
+
+        [Test]
+        public void LeastBodyfatTest()
+        {
+            var result = measurementLogic.LeastBodyfat().ToArray();
+
+            Assert.That(result[0],
+                Is.EqualTo(new KeyValuePair<string, double>
+                ("Ádám Ádám", 10.2)));
         }
 
         [TestCase(10, true)]

@@ -73,5 +73,23 @@ namespace XY57LW_HFT_2021221.Logic
                    select new KeyValuePair<string, int>
                    (g.Key, g.Max(t => t.Situp));
         }
+
+        //legkövérebb diák
+        public IEnumerable<KeyValuePair<string, double>> BiggestBMI()
+        {
+            return from x in measurementRepo.ReadAll()
+                   group x by x.Student.Name into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Max(t => t.BMI));
+        }
+
+        //legkisebb testzsirral rendelkező diák
+        public IEnumerable<KeyValuePair<string, double>> LeastBodyfat()
+        {
+            return from x in measurementRepo.ReadAll()
+                   group x by x.Student.Name into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Max(t => t.Bodyfat));
+        }
     }
 }
