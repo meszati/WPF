@@ -32,7 +32,6 @@ namespace XY57LW_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Student> Students { get; set; }
-
         public School()
         {
             Students = new HashSet<Student>();

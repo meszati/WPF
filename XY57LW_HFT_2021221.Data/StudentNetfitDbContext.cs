@@ -30,6 +30,24 @@ namespace XY57LW_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Student>(entity =>
+            {
+                entity
+                .HasOne(student => student.Sch)
+                .WithMany(school => school.Students)
+                .HasForeignKey(student => student.SchoolID)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            //modelBuilder.Entity<Student>(entity =>
+            //{
+            //    entity
+            //    .HasOne(student => student.Netfit)
+            //    .WithOne(measurement => measurement.Student)
+            //    .HasForeignKey(student => student.)
+            //    .OnDelete(DeleteBehavior.Restrict);
+            //});
+
             School jedlik = new School() { SchID = 1, Name = "Jedlik Ányos Gimnázium", Headmaster = "Bese Benő", Location = "Budapest, Táncsics Mihály utca 92.", Phone = "06 1 276 1133" };
             School baár = new School() { SchID = 2, Name = "Baár-Madas Református Gimnázium", Headmaster = "Tombor László", Location = "Budapest, Lorántffy Zsuzsanna utca 3.", Phone = "06 1 212 1494" };
             School moricz = new School() { SchID = 3, Name = "Móricz Zsigmond Gimnázium", Headmaster = "Farkas Barabásné", Location = "Budapest, Törökvész út 48-54.", Phone = "06 1 394 4965" };

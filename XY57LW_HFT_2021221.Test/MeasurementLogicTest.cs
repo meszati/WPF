@@ -30,7 +30,7 @@ namespace XY57LW_HFT_2021221.Test
             {
                 Name = "Ádám Ádám",
                 City = "Budapest",
-                School = fakeSchool
+                Sch = fakeSchool
             };
 
             mockMeasurementRepository.Setup((t) => t.Create(It.IsAny<Measurement>()));

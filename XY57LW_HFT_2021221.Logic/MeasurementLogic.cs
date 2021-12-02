@@ -51,7 +51,7 @@ namespace XY57LW_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, int>> StudentsOver10PushUps()
         {
             return from x in measurementRepo.ReadAll().Where(t => t.Pushup > 10)
-                   group x by x.Student.School.Name into g
+                   group x by x.Student.Sch.Name into g
                    select new KeyValuePair<string, int>
                    (g.Key, g.Count());
         }
@@ -60,7 +60,7 @@ namespace XY57LW_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, double>> AVGPushUpBySchools()
         {
             return from x in measurementRepo.ReadAll()
-                   group x by x.Student.School.Name into g
+                   group x by x.Student.Sch.Name into g
                    select new KeyValuePair<string, double>
                    (g.Key, g.Average(t => t.Pushup));
         }

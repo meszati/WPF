@@ -34,13 +34,13 @@ namespace XY57LW_HFT_2021221.Test
                     {
                         Name = "Ádám Ádám",
                         City = "Budapest",
-                        School = fakeSchool
+                        Sch = fakeSchool
                     },
                     new Student()
                     {
                         Name = "Álmos Ádám",
                         City = "Halásztelek",
-                        School = fakeSchool
+                        Sch = fakeSchool
                     }
                 }.AsQueryable());
 

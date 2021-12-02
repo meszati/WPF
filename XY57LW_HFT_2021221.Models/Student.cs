@@ -29,19 +29,19 @@ namespace XY57LW_HFT_2021221.Models
         [Required]
         public string City { get; set; }
 
-        [ForeignKey(nameof(School))]
+        [ForeignKey(nameof(Sch))]
         public int SchoolID { get; set; }
 
         [NotMapped]
         [JsonIgnore]
-        public virtual School School { get; set; }
+        public virtual School Sch { get; set; }
+
+        [ForeignKey(nameof(Netfit))]
+        public int NetfitID { get; set; }
 
         [NotMapped]
         [JsonIgnore]
         public virtual Measurement Netfit { get; set; }
-
-        [ForeignKey(nameof(Measurement))]
-        public int NetfitID { get; set; }
 
         public override string ToString()
         {
