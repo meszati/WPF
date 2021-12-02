@@ -21,6 +21,6 @@ namespace XY57LW_HFT_2021221.Logic
 
         IEnumerable<KeyValuePair<string, int>> StudentsCountBySchool();
 
-        IEnumerable<KeyValuePair<string, IEnumerable<string>>> StudentsBySchool();
+        
     }
 }

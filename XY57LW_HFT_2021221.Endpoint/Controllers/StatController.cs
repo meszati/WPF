@@ -27,11 +27,6 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
             return sl.StudentsCountBySchool();
         }
 
-        public IEnumerable<KeyValuePair<string, IEnumerable<string>>> StudentsBySchool()
-        {
-            return sl.StudentsBySchool();
-        }
-
         public IEnumerable<KeyValuePair<string, int>> StudentsOver10PushUps()
         {
             return ml.StudentsOver10PushUps();

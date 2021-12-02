@@ -35,7 +35,6 @@ namespace XY57LW_HFT_2021221.Client
 
             var noncrudMenu = new ConsoleMenu(args, level: 1)
                 .Add("ShowStudentsCountBySchool", () => StudentsCountBySchool())
-                .Add("ShowStudentsBySchool", () => StudentsBySchool())
                 .Add("ShowStudentsOver10PushUps", () => StudentsOver10PushUps())
                 .Add("ShowAVGPushUpBySchools", () => AVGPushUpBySchools())
                 .Add("ShowMostSitUps", () => MostSitUps())
@@ -267,22 +266,6 @@ namespace XY57LW_HFT_2021221.Client
             foreach (var item in List)
             {
                 Console.WriteLine("\t>>School: " + item.Key + "\n\tCount: " + item.Value + "\n");
-            }
-            Console.ReadLine();
-        }
-
-        static void StudentsBySchool()
-        {
-            Console.Clear();
-            Console.WriteLine("StudentsBySchool");
-            var List = rest.Get<KeyValuePair<string, IEnumerable<string>>>("stat/StudentsBySchool");
-            foreach (var item in List)
-            {
-                //foreach (var item2 in item.Value)
-                //{
-                //    Console.WriteLine("\t>>School: " + item.Key + "\n\tStudent: " + item2 + "\n");
-                //}
-                Console.WriteLine("\t>>School: " + item.Key + "\n\tStudent: " + item.Value + "\n");
             }
             Console.ReadLine();
         }
