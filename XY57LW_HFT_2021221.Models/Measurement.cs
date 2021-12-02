@@ -31,5 +31,10 @@ namespace XY57LW_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Student Student { get; set; }
+
+        public override string ToString()
+        {
+            return "BMI: " + this.BMI + " |Pushup: " + this.Pushup + " |Situp: " + this.Situp + " |Jump: " + this.Jump + " |Bodyfat: " + this.Bodyfat;
+        }
     }
 }

@@ -24,5 +24,9 @@ namespace XY57LW_HFT_2021221.Logic
         IEnumerable<KeyValuePair<string, double>> AVGPushUpBySchools();
 
         IEnumerable<KeyValuePair<string, int>> MostSitUps();
+
+        IEnumerable<KeyValuePair<string, double>> BiggestBMI();
+
+        IEnumerable<KeyValuePair<string, double>> LeastBodyfat();
     }
 }

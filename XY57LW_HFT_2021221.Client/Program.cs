@@ -275,10 +275,10 @@ namespace XY57LW_HFT_2021221.Client
         {
             Console.Clear();
             Console.WriteLine("StudentsBySchool");
-            var List = rest.Get<KeyValuePair<string, int>>("stat/StudentsBySchool");
+            var List = rest.Get<KeyValuePair<string, IEnumerable<string>>>("stat/StudentsBySchool");
             foreach (var item in List)
             {
-                Console.WriteLine("\t>>Brand: " + item.Key + "\n\tCount: " + item.Value + "\n");
+                Console.WriteLine("\t>>School: " + item.Key + "\n\tStudent: " + item.Value + "\n");
             }
             Console.ReadLine();
         }
@@ -287,7 +287,7 @@ namespace XY57LW_HFT_2021221.Client
         {
             Console.Clear();
             Console.WriteLine("AVGPushUpBySchools");
-            var List = rest.Get<KeyValuePair<string, int>>("stat/AVGPushUpBySchools");
+            var List = rest.Get<KeyValuePair<string, double>>("stat/AVGPushUpBySchools");
             foreach (var item in List)
             {
                 Console.WriteLine("\t>>School: " + item.Key + "\n\tAVG Pushups: " + item.Value + "\n");

@@ -22,7 +22,7 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
             this.ml = ml;
         }
         
-        public IEnumerable<KeyValuePair<string, int>> GetStudentsCountBySchoo()
+        public IEnumerable<KeyValuePair<string, int>> StudentsCountBySchool()
         {
             return sl.StudentsCountBySchool();
         }
@@ -45,6 +45,16 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public IEnumerable<KeyValuePair<string, int>> MostSitUps()
         {
             return ml.MostSitUps();
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> BiggestBMI()
+        {
+            return ml.BiggestBMI();
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> LeastBodyfat()
+        {
+            return ml.LeastBodyfat();
         }
     }
 }

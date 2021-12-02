@@ -42,5 +42,10 @@ namespace XY57LW_HFT_2021221.Models
 
         [ForeignKey(nameof(Measurement))]
         public int NetfitID { get; set; }
+
+        public override string ToString()
+        {
+            return "Name: " + this.Name + " |City: " + this.City;
+        }
     }
 }

@@ -37,5 +37,10 @@ namespace XY57LW_HFT_2021221.Models
         {
             Students = new HashSet<Student>();
         }
+
+        public override string ToString()
+        {
+            return "Name: " + this.Name + " |Headmaster: " + this.Headmaster;
+        }
     }
 }
