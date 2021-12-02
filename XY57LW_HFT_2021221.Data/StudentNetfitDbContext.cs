@@ -39,14 +39,14 @@ namespace XY57LW_HFT_2021221.Data
                 .OnDelete(DeleteBehavior.Restrict);
             });
 
-            //modelBuilder.Entity<Student>(entity =>
-            //{
-            //    entity
-            //    .HasOne(student => student.Netfit)
-            //    .WithOne(measurement => measurement.Student)
-            //    .HasForeignKey(student => student.)
-            //    .OnDelete(DeleteBehavior.Restrict);
-            //});
+            modelBuilder.Entity<Student>(entity =>
+            {
+                entity
+                .HasOne(student => student.Netfit)
+                .WithOne(measurement => measurement.Student)
+                .HasForeignKey<Student>(student => student.NetfitID)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
 
             School jedlik = new School() { SchID = 1, Name = "Jedlik Ányos Gimnázium", Headmaster = "Bese Benő", Location = "Budapest, Táncsics Mihály utca 92.", Phone = "06 1 276 1133" };
             School baár = new School() { SchID = 2, Name = "Baár-Madas Református Gimnázium", Headmaster = "Tombor László", Location = "Budapest, Lorántffy Zsuzsanna utca 3.", Phone = "06 1 212 1494" };

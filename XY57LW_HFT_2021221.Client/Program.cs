@@ -278,6 +278,10 @@ namespace XY57LW_HFT_2021221.Client
             var List = rest.Get<KeyValuePair<string, IEnumerable<string>>>("stat/StudentsBySchool");
             foreach (var item in List)
             {
+                //foreach (var item2 in item.Value)
+                //{
+                //    Console.WriteLine("\t>>School: " + item.Key + "\n\tStudent: " + item2 + "\n");
+                //}
                 Console.WriteLine("\t>>School: " + item.Key + "\n\tStudent: " + item.Value + "\n");
             }
             Console.ReadLine();

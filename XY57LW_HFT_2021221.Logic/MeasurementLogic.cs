@@ -65,31 +65,30 @@ namespace XY57LW_HFT_2021221.Logic
                    (g.Key, g.Average(t => t.Pushup));
         }
 
-        //legtöbb felülést csináló diák
         public IEnumerable<KeyValuePair<string, int>> MostSitUps()
         {
-            return from x in measurementRepo.ReadAll()
-                   group x by x.Student.Name into g
+            return (from x in measurementRepo.ReadAll()
+                   orderby x.Situp descending
                    select new KeyValuePair<string, int>
-                   (g.Key, g.Max(t => t.Situp));
+                   (x.Student.Name, x.Situp)).Take(1);
         }
 
-        //legkövérebb diák
+        //3 legkövérebb diák
         public IEnumerable<KeyValuePair<string, double>> BiggestBMI()
         {
-            return from x in measurementRepo.ReadAll()
-                   group x by x.Student.Name into g
+            return (from x in measurementRepo.ReadAll()
+                   orderby x.BMI descending
                    select new KeyValuePair<string, double>
-                   (g.Key, g.Max(t => t.BMI));
+                   (x.Student.Name, x.BMI)).Take(3);
         }
 
         //legkisebb testzsirral rendelkező diák
         public IEnumerable<KeyValuePair<string, double>> LeastBodyfat()
         {
-            return from x in measurementRepo.ReadAll()
-                   group x by x.Student.Name into g
+            return (from x in measurementRepo.ReadAll()
+                   orderby x.Bodyfat ascending
                    select new KeyValuePair<string, double>
-                   (g.Key, g.Max(t => t.Bodyfat));
+                   (x.Student.Name, x.Bodyfat)).Take(1);
         }
     }
 }
