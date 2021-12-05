@@ -50,9 +50,10 @@ namespace XY57LW_HFT_2021221.Test
                     {
                         Pushup = 4,
                         Situp = 5,
+                        Bodyfat = 11,
                         Student = fakeStudent
                     }
-                }.AsQueryable()) ;
+                }.AsQueryable());
 
             measurementLogic = new MeasurementLogic(mockMeasurementRepository.Object);
         }

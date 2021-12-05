@@ -57,16 +57,6 @@ namespace XY57LW_HFT_2021221.Test
                 ("Terézvárosi", 2)));
         }
 
-        [Test]
-        public void StudentsBySchoolTest()
-        {
-            var result = studentLogic.StudentsBySchool().ToArray();
-
-            Assert.That(result[0],
-                Is.EqualTo(new KeyValuePair<string, IEnumerable<string>>
-                ("Terézvárosi", new string[] { "Ádám Ádám", "Álmos Ádám"})));
-        }
-
         [TestCase("Gyéresi Norbert", true)]
         [TestCase("Ádám", false)]
         public void CreateStudentTest(string name, bool result)
