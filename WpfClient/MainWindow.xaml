@@ -1,0 +1,116 @@
+﻿<Window x:Class="WpfClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClient"
+        mc:Ignorable="d"
+        Title="Student Editor" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Green">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding StudentID}" ContentStringFormat=" {0} - "/>
+                            <Label Content="{Binding Name}"/>
+                            <Label Content="{Binding City}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,266,0" Grid.RowSpan="2">
+            <Label Content="Name" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedStudent.Name}"  Padding="5"/>
+            <Label Content="BirthDate" Background="LightGreen" />
+            <DatePicker SelectedDate="{Binding SelectedStudent.BirthDate}" Padding="5"/>
+            <Label Content="City" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedStudent.City}" Padding="5" />
+            <Label Content="SchoolID" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedStudent.SchoolID}"  Padding="5"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <Button Content="Create Student" Command="{Binding CreateStudentCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5" />
+            <Button Content="Delete Student" Command="{Binding DeleteStudentCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Button Content="Update Student" Command="{Binding UpdateStudentCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
+        <ListBox Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Schools}" SelectedItem="{Binding SelectedSchool}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Green">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding SchID}" ContentStringFormat=" {0} - "/>
+                            <Label Content="{Binding Name}"/>
+                            <Label Content="{Binding Headmaster}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label Content="Name" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedSchool.Name}"  Padding="5"/>
+            <Label Content="Headmaster" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedSchool.Headmaster}"  Padding="5"/>
+            <Label Content="Location" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedSchool.Location}"  Padding="5"/>
+            <Label Content="Phone" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedSchool.Phone}"  Padding="5"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Button Content="Create School" Command="{Binding CreateSchoolCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Button Content="Delete School" Command="{Binding DeleteSchoolCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Button Content="Update School" Command="{Binding UpdateSchoolCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
+
+
+
+
+        <ListBox Grid.Column="2" Grid.Row="0" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Measurements}" SelectedItem="{Binding SelectedMeasurement}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Green">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding ID}" ContentStringFormat=" {0} - "/>
+                            <Label Content="{Binding Pushup}"/>
+                            <Label Content="{Binding Situp}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="2" Grid.Row="1">
+            <Label Content="BMI" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedMeasurement.BMI}"  Padding="5"/>
+            <Label Content="Pushup" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedMeasurement.Pushup}"  Padding="5"/>
+            <Label Content="Situp" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedMeasurement.Situp}"  Padding="5"/>
+            <Label Content="Jump" Background="LightGreen" />
+            <TextBox Text="{Binding SelectedMeasurement.Jump}"  Padding="5"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2">
+            <Button Content="Create Netfit" Command="{Binding CreateMeasurementCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Button Content="Delete Netfit" Command="{Binding DeleteMeasurementCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Button Content="Update Netfit" Command="{Binding UpdateMeasurementCommand}"  Margin="5" Background="#FF0D9100" FontWeight="Bold" FontSize="14" BorderBrush="Black" BorderThickness="1.5"/>
+            <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+        </StackPanel>
+
+    </Grid>
+</Window>

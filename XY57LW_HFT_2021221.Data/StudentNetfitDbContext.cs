@@ -36,7 +36,7 @@ namespace XY57LW_HFT_2021221.Data
                 .HasOne(student => student.Sch)
                 .WithMany(school => school.Students)
                 .HasForeignKey(student => student.SchoolID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Student>(entity =>
@@ -45,7 +45,7 @@ namespace XY57LW_HFT_2021221.Data
                 .HasOne(student => student.Netfit)
                 .WithOne(measurement => measurement.Student)
                 .HasForeignKey<Student>(student => student.NetfitID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             School jedlik = new School() { SchID = 1, Name = "Jedlik Ányos Gimnázium", Headmaster = "Bese Benő", Location = "Budapest, Táncsics Mihály utca 92.", Phone = "06 1 276 1133" };
@@ -64,7 +64,7 @@ namespace XY57LW_HFT_2021221.Data
             Measurement eight = new Measurement() { ID = 8, BMI = 22.1, Bodyfat = 14.5, Pushup = 31, Situp = 63, Jump = 234 };
             Measurement nine = new Measurement() { ID = 9, BMI = 19.8, Bodyfat = 19.8, Pushup = 11, Situp = 34, Jump = 211 };
             Measurement ten = new Measurement() { ID = 10, BMI = 24, Bodyfat = 21, Pushup = 18, Situp = 65, Jump = 178 };
-            Measurement eleven = new Measurement() { ID = 11, BMI = 23.4, Bodyfat = 27.3, Pushup = 22, Situp = 67, Jump = 156 };
+            Measurement eleven = new Measurement() { ID = 11, BMI = 23.4, Bodyfat = 27.3, Pushup = 22, Situp = 67, Jump = 156 };          
 
             Student norbi = new Student() { StudentID = 1, SchoolID = jedlik.SchID, NetfitID = one.ID, Name = "Gyéresi Norbert", City = "Halásztelek", MothersName = "Dali Melinda", BirthDate = new DateTime(2000, 08, 08) };
             Student noel = new Student() { StudentID = 2, SchoolID = baár.SchID, NetfitID = two.ID, Name = "Maklári Noel", City = "Budapest", BirthDate = new DateTime(2005, 10, 21) };

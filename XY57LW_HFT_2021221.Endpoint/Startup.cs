@@ -27,6 +27,8 @@ namespace XY57LW_HFT_2021221.Endpoint
             services.AddTransient<IStudentRepository, StudentRepository>();
             services.AddTransient<IMeasurementRepository, MeasurementRepository>();
             services.AddTransient<StudentNetfitDbContext, StudentNetfitDbContext>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

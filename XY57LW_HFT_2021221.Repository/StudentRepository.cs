@@ -19,6 +19,7 @@ namespace XY57LW_HFT_2021221.Repository
 
         public void Create(Student student)
         {
+
             ctx.Students.Add(student);
             ctx.SaveChanges();
         }
