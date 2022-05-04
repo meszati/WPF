@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XY57LW_HFT_2021221.Endpoint.Services;
 using XY57LW_HFT_2021221.Logic;
 using XY57LW_HFT_2021221.Models;
 
@@ -15,10 +17,12 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
     public class SchoolController : ControllerBase
     {
         ISchoolLogic sl;
+        IHubContext<SignalRHub> hub;
 
-        public SchoolController(ISchoolLogic sl)
+        public SchoolController(ISchoolLogic sl, IHubContext<SignalRHub> hub)
         {
             this.sl = sl;
+            this.hub = hub;           
         }
 
         // GET: api/<SchoolController>
@@ -40,6 +44,7 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] School value)
         {
             sl.Create(value);
+            hub.Clients.All.SendAsync("SchoolCreated", value);
         }
 
         // PUT api/<SchoolController>/5
@@ -47,13 +52,16 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] School value)
         {
             sl.Update(value);
+            hub.Clients.All.SendAsync("SchoolUpdated", value);
         }
 
         // DELETE api/<SchoolController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var schoolToDelete = sl.Read(id);
             sl.Delete(id);
+            hub.Clients.All.SendAsync("SchoolDeleted", schoolToDelete);
         }
     }
 }

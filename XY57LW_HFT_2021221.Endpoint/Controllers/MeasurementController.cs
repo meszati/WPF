@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XY57LW_HFT_2021221.Endpoint.Services;
 using XY57LW_HFT_2021221.Logic;
 using XY57LW_HFT_2021221.Models;
 
@@ -15,10 +17,12 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
     public class MeasurementController : ControllerBase
     {
         IMeasurementLogic ml;
+        IHubContext<SignalRHub> hub;
 
-        public MeasurementController(IMeasurementLogic ml)
+        public MeasurementController(IMeasurementLogic ml, IHubContext<SignalRHub> hub)
         {
             this.ml = ml;
+            this.hub = hub;
         }
 
         // GET: api/<MeasurementController>
@@ -40,6 +44,7 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Measurement value)
         {
             ml.Create(value);
+            hub.Clients.All.SendAsync("MeasurementCreated", value);
         }
 
         // PUT api/<MeasurementController>/5
@@ -47,13 +52,16 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Measurement value)
         {
             ml.Update(value);
+            hub.Clients.All.SendAsync("MeasurementUpdated", value);
         }
 
         // DELETE api/<MeasurementController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var MeasurementToDelete = ml.Read(id);
             ml.Delete(id);
+            hub.Clients.All.SendAsync("MeasurementDeleted", MeasurementToDelete);
         }
     }
 }

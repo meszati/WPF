@@ -124,9 +124,9 @@ namespace WpfClient
         {
             if (!IsInDesignMode)
             {
-                Students = new RestCollection<Student>("http://localhost:9712/", "student");
-                Measurements = new RestCollection<Measurement>("http://localhost:9712/", "measurement");
-                Schools = new RestCollection<School>("http://localhost:9712/", "school");
+                Students = new RestCollection<Student>("http://localhost:9712/", "student", "hub");
+                Measurements = new RestCollection<Measurement>("http://localhost:9712/", "measurement", "hub");
+                Schools = new RestCollection<School>("http://localhost:9712/", "school", "hub");
                 int last = 0;
                 CreateStudentCommand = new RelayCommand(() =>
                 {

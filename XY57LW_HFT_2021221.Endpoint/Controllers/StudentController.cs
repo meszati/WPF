@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XY57LW_HFT_2021221.Endpoint.Services;
 using XY57LW_HFT_2021221.Logic;
 using XY57LW_HFT_2021221.Models;
 
@@ -15,10 +17,12 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
     public class StudentController : ControllerBase
     {
         IStudentLogic stl;
+        IHubContext<SignalRHub> hub;
 
-        public StudentController(IStudentLogic stl)
+        public StudentController(IStudentLogic stl, IHubContext<SignalRHub> hub)
         {
             this.stl = stl;
+            this.hub = hub;
         }
 
         // GET: api/<StudentController>
@@ -40,6 +44,7 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Student value)
         {
             stl.Create(value);
+            hub.Clients.All.SendAsync("StudentCreated", value);
         }
 
         // PUT api/<StudentController>/5
@@ -47,13 +52,16 @@ namespace XY57LW_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Student value)
         {
             stl.Update(value);
+            hub.Clients.All.SendAsync("StudentUpdated", value);
         }
 
         // DELETE api/<StudentController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var StudentToDelete = stl.Read(id);
             stl.Delete(id);
+            hub.Clients.All.SendAsync("StudentDeleted", StudentToDelete);
         }
     }
 }
